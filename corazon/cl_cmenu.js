@@ -1,5 +1,5 @@
-let corazon = {};
-let CMenu = {};
+corazon = {};
+CMenu = {};
 
 let color_white = [255, 255, 255];
 let color_hagun = [11, 65, 219];
