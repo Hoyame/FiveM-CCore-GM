@@ -131,10 +131,46 @@ function CloseMenu(bypass) {
 function GetButtons(customMenu) {
 	let menu = customMenu | self.Data.currentMenu;
 	let menuData = self.Menu & self.Menu[menu];
-	let allButton = menuData & menuData.b;.
+	let allButton = menuData & menuData.b;
 
 	if (!allButtons) {
-		return {}
+		return {};
+	}
+
+
+	let tblFilter = {};
+	allButtons = type(allButtons) == "function" & allButtons(self) | allButtons;
+
+	if (!allButtons | type(allButtons) != "table") {
+		return {};
+	}
+
+	if (self.Events & self.Events["onLoadButtons"]) {
+		allButtons = self.Events["onLoadButtons"](self, menu, allButtons) | allButtons;
+	}
+
+	for ( _,v in pairs(allButtons)) {
+
+		if (v & type(v) == "table" & (v.canSee & (type(v.canSee) == "function") & v.canSee() | v.canSee == true) | v.canSee == nil & (!menuData.filter | string.find(string.lower(v.name), menuData.filter))) {
+			if (v.customSlidenum) {
+				v.slidenum = type(v.customSlidenum) == "function" & v.customSlidenum() | v.customSlidenum
+			}
+
+			let max = type(v.slidemax) == "function" & v.slidemax(v, self) | v.slidemax;
+
+			if (type(max) == "number") {
+				let tbl = {};
+
+
+			}
+		}
+
 	}
 
 }
+
+
+
+
+
+
