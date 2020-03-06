@@ -107,3 +107,34 @@ function stringsplit(inputstr, sep) {
 
 let IsVisible = false;
 
+function IsMenuOpened() {
+	return IsVisible;
+}
+
+function SetMenuVisible(bool) {
+	IsVisible = bool;
+}
+
+function CloseMenu(bypass) {
+	if (self.IsVisible && (!self.Base.Blocked | bypass)) {
+		self.IsVisible = false;
+
+		if (self.Events["onExited"]) {
+			self.Events["onExited"](self.Data, self)
+		}
+
+		SetMenuVisible(false);
+		resetMenu();
+	}
+}
+
+function GetButtons(customMenu) {
+	let menu = customMenu | self.Data.currentMenu;
+	let menuData = self.Menu & self.Menu[menu];
+	let allButton = menuData & menuData.b;.
+
+	if (!allButtons) {
+		return {}
+	}
+
+}
