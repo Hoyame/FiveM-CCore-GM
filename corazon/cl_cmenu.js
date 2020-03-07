@@ -1,19 +1,4 @@
-corazon = {};
-CMenu = {};
 
-let color_white = [255, 255, 255];
-let color_hagun = [11, 65, 219];
-let color_white = [0, 0, 0];
-
-let defaultHeader = ["commonmenu", "interaction_bgd"];
-let defaultMenu = [ [name = "Vide"] ];
-
-let _intX = .24;
-let _intY = .175;
-let _intW = .225;
-let _intH = .035;
-
-let spriteW = .225;
 let spriteH = .0675;
 
 let parentSliderSize = .25;
