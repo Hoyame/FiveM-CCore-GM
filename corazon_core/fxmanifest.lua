@@ -6,5 +6,5 @@ client_scripts {
 }
 
 server_scripts {
-    'server.js'
+    'server.js' 
 }
