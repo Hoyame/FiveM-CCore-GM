@@ -161,12 +161,24 @@ function GetButtons(customMenu) {
 			if (type(max) == "number") {
 				let tbl = {};
 
-
+				//for (i = 0, max) {}
+				max = tbl
 			}
-		}
 
+			if (max) {
+				v.slidenum = v.slidenum | 1
+				let slideName = max[v.slidenum]
+
+				if (slideName) {
+					v.slidename = slideName & type(slideName) == "table" & slideName.name | tostring(slideName)
+				}
+			}
+
+			// tblFilter[tblFilter + 1] = v
+		}
 	}
 
+	// if (tblFilter)
 }
 
 
