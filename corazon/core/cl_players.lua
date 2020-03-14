@@ -9,8 +9,11 @@ CPlayer = {}
 
 CPlayer.playerName = ""
 CPlayer.playerJob = ""
-CPlayer.playerMoney = ""
-CPlayer.playerBank = ""
+
+CPlayer.playerEspece = ""
+CPlayer.playerBanque = ""
+CPlayer.playerSale = ""
+
 CPlayer.playerGroup = ""
 
 --------------------------------------------------------------------------
@@ -36,6 +39,10 @@ function GetPlayers()
 
     return players
 
+end
+
+function GetPlayersInformation()
+    
 end
 
 --------------------------------------------------------------------------

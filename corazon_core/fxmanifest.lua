@@ -1,10 +1,13 @@
 fx_version 'adamant'
 game 'gta5'
 
+server_script '@mysql-async/lib/MySQL.lua'
+
 client_scripts {
-	'client.js',
+	'sh_core.lua',
 }
 
-server_scripts {
-    'server.js' 
-}
+--server_scripts {
+ --   'sv_test.lua'
+--}
+
