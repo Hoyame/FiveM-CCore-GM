@@ -1,5 +1,48 @@
 local activeBars = {}
 
+
+function LoadingPrompt(loadingText, spinnerType)
+
+	if IsLoadingPromptBeingDisplayed() then
+		RemoveLoadingPrompt()
+	end
+
+	if (loadingText == nil) then
+		BeginTextCommandBusyString(nil)
+	else
+		BeginTextCommandBusyString("STRING");
+		AddTextComponentSubstringPlayerName(loadingText);
+	end
+
+	EndTextCommandBusyString(spinnerType)
+end
+
+function stringsplit(inputstr, sep)
+
+	if not inputstr then return end
+
+	if sep == nil then
+		sep = "%s"
+	end
+
+	local t = {} ; i = 1
+
+	for str in string.gmatch(inputstr, "([^" .. sep .. "]+)") do
+		t[i] = str
+		i = i + 1
+	end
+
+	return t
+
+end
+
+function firstToUpper(str)
+
+	str = string.lower(tostring(str))
+	return str:gsub("^%l", string.upper)
+
+end
+
 function showLoadingPrompt(showText, showTime, showType)
 
 	Citizen.CreateThread(function()
@@ -38,6 +81,28 @@ function drawTxt(x,y,scale, text, f,c,n, a)
 
 end
 
+RegisterNetEvent("corazon:ShowAboveRadarMessage")
+AddEventHandler("corazon:ShowAboveRadarMessage", ShowAboveRadarMessage)
+
+RegisterNetEvent("corazon:drawCenterText")
+AddEventHandler("corazon:drawCenterText", drawCenterText)
+
+RegisterNetEvent("corazon:ShowAboveRadarMessageIcon")
+AddEventHandler("corazon:ShowAboveRadarMessageIcon", ShowAboveRadarMessageIcon)
+
+RegisterNetEvent("corazon:ShowAboveRaderMedals")
+AddEventHandler("corazon:ShowAboveRaderMedals", function(name, dict, medal)
+	SetNotificationTextEntry("jamyfafi")
+	AddTextComponentString(name)
+	Citizen.InvokeNative(0xAA295B6F28BD587D, dict, medal, 0, 109, "HUD_MED_UNLKED")
+end)
+
+function ShowAboveRaderMedals(name, dict, medal)
+	SetNotificationTextEntry("jamyfafi")
+	AddTextComponentString(name)
+	Citizen.InvokeNative(0xAA295B6F28BD587D, dict, medal, 0, 109, "HUD_MED_UNLKED")
+end
+
 function ShowAboveRadarMessage(message, back)
 
 	if back then Citizen.InvokeNative(0x92F0DA1E27DB96DC, back) end
@@ -49,11 +114,9 @@ function ShowAboveRadarMessage(message, back)
 end
 
 function ShowHelpNotification(msg)
-	--if not IsHelpMessageBeingDisplayed() then
-		AddTextEntry('esxHelpNotification', msg)
-		BeginTextCommandDisplayHelp('esxHelpNotification')
-		EndTextCommandDisplayHelp(0, false, true, -1)
-	--end
+	AddTextEntry('zbiHelpNotification', msg)
+	BeginTextCommandDisplayHelp('zbiHelpNotification')
+	EndTextCommandDisplayHelp(0, false, true, -1)
 end
 
 function drawScrTxt(x, y, w, h, f, s, text, outline, center, wr)
@@ -224,11 +287,9 @@ function createBlip(vectorPosX, vectorPosY, vectorPosZ, intSprite, intColor, str
 	if intDisplay then SetBlipDisplay(blip, intDisplay) end
 	if intAlpha then SetBlipAlpha(blip, intAlpha) end
 	if stringText and (not intDisplay or intDisplay ~= 8) then
-
 		BeginTextCommandSetBlipName("STRING")
 		AddTextComponentString(stringText)
 		EndTextCommandSetBlipName(blip)
-
 	end
 
 	return blip

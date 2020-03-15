@@ -8,9 +8,19 @@ client_scripts {
 	'core/sh_functions.lua',
 	'core/cl_players.lua',
 	----------------------------------------------
-	'game/cl_connection.lua'
+	'game/sh_connection.lua',
+	'game/cl_game.lua',
+	----------------------------------------------
+	'player/character/cl_character.lua',
+	'player/identity/cl_identity.lua'
+
 }
 
 server_scripts {
-    'core/sv_players.lua'
+	'core/sv_players.lua',
+	----------------------------------------------
+	'game/sv_game.lua',
+	----------------------------------------------
+	'player/character/sv_character.lua',
+	'player/identity/sv_identity.lua'
 }

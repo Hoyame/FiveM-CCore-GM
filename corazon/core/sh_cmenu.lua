@@ -692,3 +692,43 @@ function firstToUpper(str)
     return (str:gsub("^%l", string.upper))
 end
 
+IsMenuOpened = function() return exports.corazon_scaleform:IsMenuOpened() end
+
+local textureList = {"commonmenu", "commonmenutu", "breaking_news"}
+
+function set3DText(ent, name, dist)
+	table.insert(DText, {ent, name, dist})
+end
+
+function DrawText3D(x, y, z, name, dist, alpha2)
+
+	local max = dist or 7
+	local px, py, pz = table.unpack(GetGameplayCamCoords())
+	local dist, dist2 = GetDistanceBetweenCoords(px, py, pz, x, y, z, 1), GetDistanceBetweenCoords(LocalPlayer().Pos, x, y, z, 1) - 1.65
+	local scale, alpha = ((1 / dist) * (max * .7)) * ( 1 / GetGameplayCamFov()) * 100, 255
+
+	if dist2 < max then
+		alpha = math.floor(255 * ((max-dist2) / max))
+	elseif dist2 >= max then
+		alpha = 0
+	end
+
+	alpha = alpha2 or alpha
+
+	SetTextFont(0)
+	SetTextScale(.0 * scale, .1 * scale)
+	SetTextColour(255, 255, 255, math.max(0, math.min(255, alpha)))
+	SetTextCentre(1)
+	SetDrawOrigin(x, y, z, 0)
+	SetTextEntry("STRING")
+	AddTextComponentString(name)
+	DrawText(0.0, 0.0)
+	ClearDrawOrigin()
+
+end
+
+Citizen.CreateThread(function()
+	for _,v in pairs(textureList) do
+		RequestStreamedTextureDict(v, true)
+	end
+end)
