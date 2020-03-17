@@ -1,123 +1,218 @@
-local zbi = false
+Corazon = {}
+Corazon.Connexion = {}
+Corazon.Connexion.Anim = {}
+cPlayer = {}
+cPlayer.player = {}
 
-local function CinematiqueStuffDelete()
+local especeOne, banqueOne, metierOne, especeTwo, banqueTwo, metierTwo
+local nomOne = ""
+local nomTwo = ""
+local activeOne = false
+local activeTwo = false
+local twoSlotLibre
+local oneSlotLibre
 
-	--updateVar("cinemaMode", 0)
-	ClearFocus()
-	RenderScriptCams(0, 0, 3000, 1, 1, 0)
+-----------------------------------------------
 
-	if GetEntityModel(GetPlayerPed(-1)) ~= GetHashKey("player_zero") then DoScreenFadeIn(500) --[[print("re-init")--]] end
+local selectionPersonnage = {
+	Base = { Title = "Choix Personnage", Blocked = true },
+	Data = { currentMenu = "choix personnage" },
+	Events = {
+		onSelected = function(self, _, btn)
+			if btn.name == "Personnage 1" then
+				TriggerServerEvent("corazon_connexion:setCharID", "1")
+				setCharID("1")
+				local charID = getCharID()
+				Corazon.Connexion.Anim:Connected(charID)
 
-	TriggerMusicEvent("GLOBAL_KILL_MUSIC")
-	PlaySound(-1, "Menu_Accept", "Phone_SoundSet_Default", 0, 0, 1)
-	if ONESYNC_ENABLED then NetworkSetTalkerProximity(10.0) end
-	ShowAboveRadarMessage("~g~Connectée au serveur")
-	TriggerEvent("corazon_core:getPlayerData")
+				if oneSlotLibre == true then
+					self:CloseMenu(true)
+					TriggerEvent("corazon:spawnCharacterData")
+				elseif oneSlotLibre == false then 
+					self:CloseMenu(true)
+					TriggerEvent("corazon:createIdentity")
+				end
+			end
+
+			if btn.name == "Personnage 2" then
+				TriggerServerEvent("corazon_connexion:setCharID", "2")
+				setCharID("2")
+				local charID = getCharID()
+				Corazon.Connexion.Anim:Connected(charID)
+
+				if twoSlotLibre == true then
+					self:CloseMenu(true)
+					TriggerEvent("corazon:spawnCharacterData")
+				elseif twoSlotLibre == false then 
+					self:CloseMenu(true)
+					TriggerEvent("corazon:createIdentity")
+				end
+			end
+		end,
+	},
+
+	Menu = {
+		["choix personnage"] = {
+			slidertime = 75,
+			b = {
+				{ name = "Personnage 1", Description = "Slot n°1" },
+				{ name = "Personnage 2", Description = "Slot n°2" }
+			}
+		}
+	}
+}
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+RegisterNetEvent('corazon_connexion:dataGripSelectPersoOne')
+AddEventHandler('corazon_connexion:dataGripSelectPersoOne', function(result)
+	activeOne = true
+
+	nomOne = tostring(result[1].iNom)
+	especeOne = tonumber(result[1].pEspece)
+	banqueOne = tonumber(result[1].pBanque)
+	metierOne = tostring(result[1].pJob)
+end)
+
+RegisterNetEvent('corazon_connexion:dataGripSelectPersoTwo')
+AddEventHandler('corazon_connexion:dataGripSelectPersoTwo', function(result)
+	activeTwo = true
+
+	nomTwo = tostring(result[1].iNom)
+	especeTwo = tonumber(result[1].pEspece)
+	banqueTwo = tonumber(result[1].pBanque)
+	metierTwo = tostring(result[1].pJob)
+end)
+
+local function selectPersoOne()
+	if metierOne == "nil" then 
+		metierOne = "Sans Emploi"
+	end
+
+	if nomOne == "nil" then 
+		oneSlotLibre = false
+		DrawRect(0.883000000000001, 0.300, 0.185, 0.250, 0, 0, 0, 220)
+		DrawAdvancedText2(0.975000000000001, 0.220, 0.005, 0.0028, 0.500, "~b~~b~Slot n°1", 255, 255, 255, 255, 0, 0)
+		DrawAdvancedText2(0.897000000000001, 0.305, 0.005, 0.0028, 0.550, "~p~      SLOT LIBRE", 255, 255, 255, 255, 0, 1)
+	else
+		oneSlotLibre = true
+		DrawRect(0.883000000000001, 0.300, 0.185, 0.250, 0, 0, 0, 220)
+		DrawAdvancedText2(0.975000000000001, 0.220, 0.005, 0.0028, 0.500, "~b~~b~Slot n°1", 255, 255, 255, 255, 0, 0)
+		DrawAdvancedText2(0.897000000000001, 0.290, 0.005, 0.0028, 0.300, "~p~Nom & Prenom :~b~ "..nomOne, 255, 255, 255, 255, 0, 1)
+		DrawAdvancedText2(0.897000000000001, 0.320, 0.005, 0.0028, 0.300, "~p~Espece :~b~ "..especeOne, 255, 255, 255, 255, 0, 1)
+		DrawAdvancedText2(0.897000000000001, 0.350, 0.005, 0.0028, 0.300, "~p~Banque :~b~ "..banqueOne, 255, 255, 255, 255, 0, 1)
+		DrawAdvancedText2(0.897000000000001, 0.380, 0.005, 0.0028, 0.300, "~p~Metier :~b~ "..metierOne, 255, 255, 255, 255, 0, 1)
+	end
+end
+
+local function selectPersoTwo()
+	if metierTwo == "nil" then 
+		metierTwo = "Sans Emploi"
+	end
+
+	if nomTwo == "nil" then 
+		twoSlotLibre = false
+		DrawRect(0.883000000000001, 0.600, 0.185, 0.250, 0, 0, 0, 220)
+		DrawAdvancedText2(0.975000000000001, 0.520, 0.005, 0.0028, 0.500, "~b~~b~Slot n°2", 255, 255, 255, 255, 0, 0)
+		DrawAdvancedText2(0.897000000000001, 0.605, 0.005, 0.0028, 0.550, "~p~      SLOT LIBRE", 255, 255, 255, 255, 0, 1)
+	else 
+		twoSlotLibre = true
+		DrawRect(0.883000000000001, 0.600, 0.185, 0.250, 0, 0, 0, 220)
+		DrawAdvancedText2(0.975000000000001, 0.520, 0.005, 0.0028, 0.500, "~b~~b~Slot n°2", 255, 255, 255, 255, 0, 0)
+		DrawAdvancedText2(0.897000000000001, 0.590, 0.005, 0.0028, 0.300, "~p~Nom & Prenom :~b~ "..nomTwo, 255, 255, 255, 255, 0, 1)
+		DrawAdvancedText2(0.897000000000001, 0.620, 0.005, 0.0028, 0.300, "~p~Espece :~b~ "..especeTwo, 255, 255, 255, 255, 0, 1)
+		DrawAdvancedText2(0.897000000000001, 0.650, 0.005, 0.0028, 0.300, "~p~Banque :~b~ "..banqueTwo, 255, 255, 255, 255, 0, 1)
+		DrawAdvancedText2(0.897000000000001, 0.680, 0.005, 0.0028, 0.300, "~p~Metier :~b~ "..metierTwo, 255, 255, 255, 255, 0, 1)
+	end
+end
+
+function Corazon.Connexion:goSvGrip()
+	TriggerServerEvent("corazon_connexion:goDataGripOne")
+	TriggerServerEvent("corazon_connexion:goDataGripTwo")
+end
+
+RegisterCommand("zboubi", function()
+	Corazon.Connexion:goSvGrip()
+end)
+
+Citizen.CreateThread(function()
+	while true do
+		Wait(0)
+		if activeOne and activeTwo then
+			selectPersoOne()
+			selectPersoTwo()
+		end
+	end
+end)
+
+RegisterCommand("printResult", function()
+    print(getCharID())
+end)
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+function Corazon.Connexion.Anim:upAnim()
+
+	SwitchOutPlayer(PlayerPedId(), 0, 1)
+	Wait(5000)
+	DoScreenFadeIn(800)
+	LoadingPrompt("Chargement en cours", 1)
+	Wait(12500)
+	RemoveLoadingPrompt()
+	
+	LoadingPrompt("En attente de la selection du personnage", 1)
+	Corazon.Connexion:goSvGrip()
+	CreateMenu(selectionPersonnage)
 
 end
 
-local function firstFunction()
+function Corazon.Connexion.Anim:downAnim()
+	SwitchInPlayer(PlayerPedId())
+	RemoveLoadingPrompt()
+end
 
-	TriggerEvent('chat:clear')  --- Clear current chat
-	TriggerEvent('chat:toggleChat') --- Toggle chat chat
-	SetEntityVisible(playerPed, false, 0) --- Make Player Invisible
-	SetEntityCoordsNoOffset(playerPed, -103.8, -921.06, 287.29, false, false, false, true) --- Teleport Infront of Maze Bank IN Air
-	FreezeEntityPosition(playerPed, true) --- Freeze The Player There
-	SetFocusEntity(playerPed) ---- Focus on the player (To Render the building)
-	PrepareMusicEvent("FM_INTRO_START")
-	Wait(1)
-	SetOverrideWeather("EXTRASUNNY")
-	NetworkOverrideClockTime(19, 0, 0)
-	BeginSrl()
-	introstep = 1
-	isinintroduction = true
-	Wait(1)
-	DoScreenFadeIn(500)
+function Corazon.Connexion.Anim:Connected()
+	activeOne = false
+	activeTwo = false
 
-	local introcam
-	introstep = 1
-
-	Citizen.CreateThread(function()
-		while true do
-			Citizen.Wait(0)
-			ShowHelpNotification("Appuyez sur ~INPUT_FRONTEND_ACCEPT~ pour vous connecter au serveur.")
-
-			if IsControlJustPressed(1, 18) then
-				DoScreenFadeOut(500)
-				Citizen.Wait(500)
-				DestroyCam(cam)
-				CinematiqueStuffDelete()
-				TriggerEvent('corazon:playerSpawned')
-				CancelMusicEvent("MIC3_INTRO")
-				return
-			end
-		end
-	end)
-
-	while true do
-		Wait(0)
-		if introstep == 1 then
-
-			introcam = CreateCam("DEFAULT_SCRIPTED_CAMERA", false)
-			SetCamActive(introcam, true)
-			SetFocusArea(754.2219, 1226.831, 356.5081, 0.0, 0.0, 0.0)
-			SetCamParams(introcam, 754.2219, 1226.831, 356.5081, -14.367, 0.0, 157.3524, 42.2442, 0, 1, 1, 2)
-			SetCamParams(introcam, 740.7797, 1193.923, 351.1997, -9.6114, 0.0, 157.8659, 44.8314, 7200, 0, 0, 2)
-			ShakeCam(introcam, "HAND_SHAKE", 0.15)
-			RenderScriptCams(true, false, 3000, 1, 1)
-			introstep = 2
-
-		elseif introstep == 2 then
-
-			DoScreenFadeOut(800)
-			Wait(800)
-			SetFocusArea(-259.36859130859375, -553.8571166992188, 142.60479736328125, 0.0, 0.0, 0.0)
-			NetworkOverrideClockTime(19, 0, 0)
-			Wait(320)
-			DoScreenFadeIn(800)
-			SetCamParams(introcam, -259.36859130859375, -553.8571166992188, 142.60479736328125, 13.275199890136719, 0.5186, -143.33779907226562, 44.9958992, 0, 1, 1, 2)
-			SetCamParams(introcam, -259.36859130859375, -553.8571166992188, 142.60479736328125, 13.275199890136719, 0.5186, -143.33779907226562, 44.9958992, 6000, 0, 0, 2)
-			introstep = 3
-
-		elseif introstep == 3 then
-
-			DoScreenFadeOut(800)
-			Wait(800)
-			SetFocusArea(-1071.044, -2979.413, 42.35216, 0.0, 0.0, 0.0)
-			NetworkOverrideClockTime(19, 0, 0)
-			Wait(320)
-			DoScreenFadeIn(800)
-			SetCamParams(introcam, -4.6668, -900.9735717773438, 184.88699340820312, 1.6106, 0.5186, 78.37860107421875, 45.0069, 0, 1, 1, 2)
-			SetCamParams(introcam, -23.008699417114258, -896.4287719726562, 184.1938934326172, -2.8529, 0.5186, 81.82620239257812, 45.0069, 8000, 0, 0, 2)
-			introstep = 4
-
-		elseif introstep == 4 then
-
-			DoScreenFadeOut(800)
-			Wait(800)
-			SetFocusArea(228.18919372558594, -1006.7584228515625, -96.8311, 0.0, 0.0, 0.0)
-			NetworkOverrideClockTime(19, 0, 0)
-			Wait(320)
-			DoScreenFadeIn(800)
-			SetCamParams(introcam, 228.18919372558594, -1006.7584228515625, -96.8311, -13.0682, 0.0572, 0.7306, 40.033, 0, 1, 1, 2)
-			SetCamParams(introcam, 228.24929809570312, -1006.1546020507812, -98.19760131835938, -2.3097, 0.0572, 0.7306, 40.033, 6000, 0, 0, 2)
 	
-		end
-	end
+--	TriggerEvent(corazon:createIdentity)
+	TriggerMusicEvent("GLOBAL_KILL_MUSIC")
+	
+	Wait(10)
+
+	Corazon.Connexion.Anim:downAnim()
+
+	Wait(7500)
+
+	PlaySound(-1, "Menu_Accept", "Phone_SoundSet_Default", 0, 0, 1)
+	ShowAboveRadarMessage("~g~Connectée au serveur")
+end
+
+RegisterCommand("goLoad", function()
+	Corazon.Connexion.Anim:upAnim()
+end)
+
+RegisterCommand("debugLoad", function()
+	Corazon.Connexion.Anim:downAnim()
+end)
+
+RegisterNetEvent("corazon.connexion:goUpAnim")
+AddEventHandler("corazon.connexion:goUpAnim", function()
+	Corazon.Connexion.Anim:upAnim()
+end)
+
+------------------------------------------------
+
+RegisterCommand("playerSpawned", function()
+	TriggerEvent("playerSpawned")
+end)
+
+local function firstFunction()
+	DoScreenFadeOut(800)
+	TriggerEvent("corazon:loadPlayer")
 end
 
 AddEventHandler("playerSpawned", firstFunction)
 
 
-AddEventHandler("onResourceStart", function(r)
 
-	if r ~= GetCurrentResourceName() then return end
-	Citizen.Wait(4000)
-	TriggerServerEvent("corazon:firstJoinEvent")
-
-end)
-
-
-RegisterCommand("zboubette", function()
-	firstFunction()
-end)

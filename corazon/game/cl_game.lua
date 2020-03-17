@@ -7,30 +7,20 @@ RegisterNetEvent("corazon:loadPlayer")
 RegisterNetEvent("corazon.game:gripData")
 
 --------------------------------------------------------
-local dataFirstConnection = ""
 
-AddEventHandler("corazon.game:gripData", function(result)
-    dataFirstConnection = tostring(result[1].firstConnection)
+function Corazon.Game:loadPlayer()
+    TriggerServerEvent("corazon:firstConnexionCreate")
+end
 
+AddEventHandler("corazon:loadPlayer", function()
     Corazon.Game:loadPlayer()
 end)
 
-
-function Corazon.Game:loadPlayer()
-
-    if dataFirstConnection == "" then
-        TriggerServerEvent("corazon.game:gripData")
-    elseif dataFirstConnection == 0 then
-        ---- Evenement pour spawn player
-    elseif dataFirstConnection == 1 then
-        
-    end
-
-end
-
 --------------------------------------------------------
 
-AddEventHandler("corazon:loadPlayer", function()
-    TriggerServerEvent("corazon.game:gripData")
+Citizen.CreateThread(function()
+	while true do
+	 	Citizen.Wait(10000)
+        TriggerServerEvent("corazon_core:goGripCharID")
+	end
 end)
-
