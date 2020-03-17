@@ -1,3 +1,5 @@
+----------------
+
 local Components = {
 	{label = 'Sexe',						name = 'sex',				value = 0,		min = 0,	zoomOffset = 0.6,		camOffset = 0.65},
 	{label = 'Visage',						name = 'face',				value = 0,		min = 0,	zoomOffset = 0.6,		camOffset = 0.65},
