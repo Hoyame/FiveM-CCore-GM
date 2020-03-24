@@ -655,7 +655,7 @@ function openCharCreatorMenu()
 
     RMenu:Get('charCreator', 'main'):SetSubtitle("~b~Creation du Personnage")
     RMenu:Get('charCreator', 'main').Closable = false;
-    RMenu:Get('charCreator', 'main').EnableMouse = true
+    --RMenu:Get('charCreator', 'main').EnableMouse = false
     RMenu:Get('charCreator', 'customFace').EnableMouse = true
     RMenu:Get('charCreator', 'customAdvanced').EnableMouse = true
 
@@ -667,11 +667,6 @@ function openCharCreatorMenu()
     local heritageSet = false
 
     RageUI.CreateWhile(1.0, true, function()
-
-        if IsControlJustPressed(1, 51) then
-            RageUI.Visible(RMenu:Get('charCreator', 'main'), not RageUI.Visible(RMenu:Get('charCreator', 'main')))
-        end
-
         if RageUI.Visible(RMenu:Get('charCreator', 'main')) then
             RageUI.DrawContent({ header = true, glare = true, instructionalButton = true }, function()
 
@@ -681,18 +676,18 @@ function openCharCreatorMenu()
                             if Index == 1 then
                                 Corazon.cCharacterCreatorDataPED = "mp_m_freemode_01"
                                 setPlayerPed("mp_m_freemode_01")
-                                mpChoisi = false
+                                mpNonChoisi = false
                             elseif Index == 2 then
                                 Corazon.cCharacterCreatorDataPED = "mp_f_freemode_01"
                                 setPlayerPed("mp_f_freemode_01")
-                                mpChoisi = false
+                                mpNonChoisi = false
                             end
                         end
                         Corazon.cCharacterCreatorData.sex = Index;
                     end)
                 end
 
-                if mpNonChoisi and not mpChoisi then
+                if mpNonChoisi then
                     RageUI.Button("Choisir un PED", "Choisissez votre ped, voici un lien ou vous pouvez trouver celui que vous voulez : https://docs.fivem.net/docs/game-references/ped-models/", { }, true, function(Hovered, Active, Selected)  
                         if (Selected) then
                             Corazon.cCharacterCreatorDataPED = KeyboardInput("Votre PED : https://docs.fivem.net/docs/game-references/ped-models/", "a_f_m_beach_01", 25)
@@ -703,7 +698,7 @@ function openCharCreatorMenu()
                     end)
                 end
                 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-                if pedNonChoisi and not mpNonChoisi then
+                if not mpNonChoisi then
                     RageUI.Button("Heritage", "Choisissiez votre mère & votre père", { RightLabel = "→" }, true, function(Hovered, Active, Selected)
 
                     end, RMenu:Get('charCreator', 'heritage'))
@@ -725,12 +720,6 @@ function openCharCreatorMenu()
                 end, RMenu:Get('charCreator', 'identity'))
 
                 RageUI.Button("Sauvegarder & Continuer", "Sauvegarder & Continuer.", { RightBadge = RageUI.BadgeStyle.Tick, Color = { BackgroundColor = { 0, 120, 0, 25 } } }, true, function(Hovered, Active, Selected)  
-                    if (Hovered) then
-                
-                    end
-                    if (Active) then
-                    
-                    end
                     if (Selected) then
                         if not ped then 
                             ShowAboveRadarMessage("Veuillez choisir votre sexe") return 
