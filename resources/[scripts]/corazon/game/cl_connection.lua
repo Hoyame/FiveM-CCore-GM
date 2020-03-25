@@ -161,7 +161,7 @@ end
 
 function openCharSelectorMenu()
 	openSelectoCharrMenu()
-	Wait(250)
+	Wait(25)
     RageUI.Visible(RMenu:Get('charSelector', 'main'), not RageUI.Visible(RMenu:Get('charSelector', 'main')))
 end
 

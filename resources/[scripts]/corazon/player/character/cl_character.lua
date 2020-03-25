@@ -1,5 +1,179 @@
+--- J'ai regarder comment faire des menus pour le slider, heritage, couleur sur flashland v5 car il y'a pas dans le wiki
+--[[
+-- variables hairListM hairListF & celles ci dessous prises de flashland v5
+
+local rideList = { "-", "Rides yeux", "Rides 1", "Rides 2", "Rides 3", "Rides 4", "Rides 5", "Rides 6", "Rides 7", "Rides 8", "Rides 9", "Rides 10", "Rides EX 1", "Rides EX 2", "Cernes" }
+local tachList = { "-", "Peu de tâches", "Tâches peu visibles", "Tâches baladées", "Tâches éparpillées", "Tâches sauvages", "Tâches centrées", "Tâches joues", "Tâches visage", "Infection visage", "Infection joues", "Rougeur", "Rougeur infectée", "Rougeurs front", "Acnée", "Acnée sévère", "Acnée baladée", "Acnée épaisse", "Acnée front", "Acnée totale" }
+local eyesList = { "Vert", "Emmeraude", "Bleu", "Bleu ciel", "Marron clair", "Marron", "Noisette", "Gris sombre", "Gris propre", "Rose", "Jaune", "Violet", "Blackout", "Ombre grise", "Soleil tequila", "Atomic", "Faux", "Cola", "Ranger", "Ying-yang", "Bull", "Lezard", "Dragon", "Extra-terrestre", "Chèvre", "Smiley", "Possédé", "Démon", "Infecté", "Alien", "Mort", "Zombie" }
+local spawnInProgress = false
+
+local BarbeName = {}
+for i = 1, 29, 1 do
+    BarbeName[i] = GetLabelText("CC_BEARD_" .. i - 1)
+end
+
+local SKClist = { "-" }
+for i = 0, 11, 1 do
+    table.insert(SKClist, GetLabelText("CC_SKINCOM_" .. i))
+end
+
+local MoleList = { "-" }
+
+for i = 0, 18, 1 do
+    table.insert(MoleList, GetLabelText("CC_MOLEFRECK_" .. i))
+end
+
+local ComplexList = { "-" }
+for i = 1, 11, 1 do
+    table.insert(ComplexList, GetLabelText("CC_MOLEFRECK_" .. i))
+end
+
+local MaquillageList = { "-" }
+for i = 1, 71, 1 do
+    table.insert(MaquillageList, GetLabelText("CC_MKUP_" .. i))
+end
+
+local LipsList = { "-" }
+for i = 1, 10, 1 do
+    table.insert(LipsList, GetLabelText("CC_LIPSTICK_" .. i))
+end
+
+local colorsPanel = {
+    haircut = {
+        [1] = 1,
+        [2] = 1,
+    },
+    barber = {
+        [1] = 1,
+        [2] = 1,
+    },
+    lipstick = {
+        [1] = 1,
+        [2] = 1,
+    },
+    makeup = {
+        [1] = 1,
+        [2] = 1,
+    }
+}
 
 
+
+local Items = {
+    mp_m_freemode_01 = {
+        [1] = {
+            List = { "Standard", "Protubérant", "Plat", "-" },
+            Index = 1,
+        },
+        [2] = {
+            List = { "Standard", "Ouverts", "Plissés", "-" },
+            Index = 1,
+        },
+        [3] = {
+            List = { "Standard", "Large", "Petit", "-" },
+            Index = 1,
+        },
+        [4] = {
+            List = { "Standard", "Saillante", "Incurvée", "-" },
+            Index = 1,
+        },
+        [5] = {
+            List = { "Standard", "Cassé", "Vers le haut", "-" },
+            Index = 1,
+        },
+        [6] = {
+            List = { "Standard", "Larges", "Fines", "-" },
+            Index = 1,
+        },
+        [7] = {
+            List = { "Standard", "Grosses", "Minces", "-" },
+            Index = 1,
+        },
+        [8] = {
+            List = { "Standard", "Épaisses", "Minces", "-" },
+            Index = 1,
+        },
+        [9] = {
+            List = { "Standard", "Carrée", "Ronde", "-" },
+            Index = 1,
+        },
+        [10] = {
+            List = { "Standard", "Large", "Petit", "-" },
+            Index = 1,
+        },
+        [11] = {
+            List = { "Standard", "Pointu", "Rond", "-" },
+            Index = 1,
+        },
+    },
+
+    mp_f_freemode_01 = {
+        [1] = {
+            List = { "Standard", "Protubérant", "Plat", "-" },
+            Index = 1,
+        },
+        [2] = {
+            List = { "Standard", "Ouverts", "Plissés", "-" },
+            Index = 1,
+        },
+        [3] = {
+            List = { "Standard", "Large", "Petit", "-" },
+            Index = 1,
+        },
+        [4] = {
+            List = { "Standard", "Saillante", "Incurvée", "-" },
+            Index = 1,
+        },
+        [5] = {
+            List = { "Standard", "Cassé", "Vers le haut", "-" },
+            Index = 1,
+        },
+        [6] = {
+            List = { "Standard", "Larges", "Fines", "-" },
+            Index = 1,
+        },
+        [7] = {
+            List = { "Standard", "Grosses", "Minces", "-" },
+            Index = 1,
+        },
+        [8] = {
+            List = { "Standard", "Épaisses", "Minces", "-" },
+            Index = 1,
+        },
+        [9] = {
+            List = { "Standard", "Carrée", "Ronde", "-" },
+            Index = 1,
+        },
+        [10] = {
+            List = { "Standard", "Large", "Petit", "-" },
+            Index = 1,
+        },
+        [11] = {
+            List = { "Standard", "Pointu", "Rond", "-" },
+            Index = 1,
+        },
+    }
+}
+local self = {
+    FACE_F_BROW = false,
+    FACE_F_EYES = false,
+    FACE_F_NOSE = false,
+    FACE_F_NOSEP = false,
+    FACE_F_NOSET = false,
+    FACE_F_CHEEK = false,
+    FACE_F_CHEEKS = false,
+    FACE_F_LIPS = false,
+    FACE_F_JAW = false,
+    FACE_F_CHIN = false,
+    FACE_F_CHINS = false,
+    FACE_HAIR = false,
+    FACE_BEARD = false,
+    FACE_SKINISSUES = false,
+    FACE_OLDNESS = false,
+    FACE_TINT = false,
+}
+
+]]
 
 local HeritageMom = { "Laila", "Jasmine", "Khadija", "Hannan", "Hasna", "Samira", "Ines", "Lina", "Amira", "Luna", "Aya", "Noûr", "Fatima", "Amina", "Aicha", "Myriam", "Leila", "Emira", "Selma", "Jana", "Manël", "Bouchra" }
 local HeritageDad = { "Azize", "Mustapha", "Jibril", "Walid", "Mohammed", "Merwan", "Ali", "Hassan", "Nabil", "Momo", "Karim", "Rayan", "Mehdi", "Yussuf", "Akram", "Ismail", "Ilyess", "Naïm", "Youness", "Youssef", "Ayoub", "Wassim", "Aymen" }
@@ -168,6 +342,7 @@ local colorsPanel = {
         [2] = 1,
     }
 }
+
 Corazon.cIdentity = {}
 
 Corazon.cCharacterCreatorData = {}
@@ -1419,13 +1594,13 @@ end
 RegisterNetEvent("corazon.character:openCreationMenu")
 AddEventHandler("corazon.character:openCreationMenu", function()
     openCharCreatorMenu()
-    Wait(250)
+    Wait(25)
     RageUI.Visible(RMenu:Get('charCreator', 'main'), not RageUI.Visible(RMenu:Get('charcrea', 'main')))
 end)
 
 RegisterCommand("perso", function()
     openCharCreatorMenu()
-    Wait(2500)
+    Wait(25)
 	RageUI.Visible(RMenu:Get('charCreator', 'main'), not RageUI.Visible(RMenu:Get('charcrea', 'main')))
 end)
 

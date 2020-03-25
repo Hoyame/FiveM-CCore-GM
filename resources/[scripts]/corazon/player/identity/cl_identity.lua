@@ -69,7 +69,7 @@ AddEventHandler("corazon:createIdentity", function()
 
 	createMenuIdentity()
 
-	Wait(2500)
+	Wait(25)
 	RageUI.Visible(RMenu:Get('identity', 'main'), not RageUI.Visible(RMenu:Get('identity', 'main')))
 end)
 
@@ -147,13 +147,13 @@ AddEventHandler("corazon:createFakeIdentity", function()
 
 	createMenuFakeIdentity()
 
-	Wait(250)
+	Wait(25)
 	RageUI.Visible(RMenu:Get('fakeidentity', 'main'), not RageUI.Visible(RMenu:Get('fakeidentity', 'main')))
 end)
 
 RegisterCommand("identity", function()
 	createMenuIdentity()
 
-	Wait(250)
+	Wait(25)
 	RageUI.Visible(RMenu:Get('identity', 'main'), not RageUI.Visible(RMenu:Get('identity', 'main')))
 end)
