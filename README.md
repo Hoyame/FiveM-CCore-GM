@@ -36,4 +36,9 @@ Take the RageUI, take the "src" folder, and drag it into "FiveM-CCore-GM\resourc
   - Advanced character creator [RageUI]
   - Settings Menu [RageUI]
   
+  # ⚠️ Warning
+Downloading and publishing this resource on Github without using the github Fork option is not allowed and may result in a suspension of the repository. I invite you to respect my work and that of collaborators. 
+
+It does not work with esx, it replaces it
+
   # Discord : https://discord.gg/BWcENUB
