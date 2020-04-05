@@ -21,8 +21,8 @@ Take the RageUI, take the "src" folder, and drag it into "FiveM-CCore-GM\resourc
 
 # 🐌 Pre-Required
  - [MySQL Async](https://github.com/brouznouf/fivem-mysql-async)
- - [RageUI] (https://github.com/iTexZoz/RageUI)
- - [CFX Server Data] (https://github.com/citizenfx/cfx-server-data)
+ - [RageUI](https://github.com/iTexZoz/RageUI)
+ - [CFX Server Data](https://github.com/citizenfx/cfx-server-data)
  
  # 🐌 Features included
   - Multi-Character
