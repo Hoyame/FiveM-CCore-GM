@@ -1,6 +1,3 @@
-[submodule "cfx-server-data/resources"]
-	path = cfx-server-data/resources
-	url = https://github.com/citizenfx/cfx-server-data
 [submodule "RageUI"]
 	path = RageUI
 	url = https://github.com/iTexZoz/RageUI
