@@ -8,3 +8,31 @@
 <p align="center">
   <a href="http://hits.dwyl.com/corazon2/FiveM-CCore-GM"><img src="http://hits.dwyl.com/corazon2/FiveM-CCore-GM.svg"      alt="license"></a> 
 </p>
+
+<p align="center">
+<img width="80%" src="https://cdn.discordapp.com/attachments/685229563915141194/690359158763028510/ccore.png">
+</p>
+
+# ⛏ FiveM CCore Gamemode [Corazon Core]
+I release this game mode that I started, because I quit fivem, and I embark on a new project
+
+# 🐌 How to use it ?
+Take the RageUI, take the "src" folder, and drag it into "FiveM-CCore-GM\resources\[scripts]\corazon\core", then take "cfx_server_data" and drag the contents of the resources folder from "cfx_server_data" in "FiveM-CCore-GM\resources\"
+
+# 🐌 Pre-Required
+ - [MySQL Async](https://github.com/brouznouf/fivem-mysql-async)
+ - [RageUI] (https://github.com/iTexZoz/RageUI)
+ - [CFX Server Data] (https://github.com/citizenfx/cfx-server-data)
+ 
+ # 🐌 Features included
+  - Multi-Character
+  - Money System (cash, bank, dirty)
+  - Functions Server and Client side
+  - Adding the English, French, Italian, Spanish language
+  - Config File
+  - Save/spawn player position (at debug)
+  - Character Choice [RageUI]
+  - Identity Register [RageUI]
+  - Advanced character creator [RageUI]
+  
+  # Discord : https://discord.gg/BWcENUB
