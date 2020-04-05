@@ -1,179 +1,5 @@
---- J'ai regarder comment faire des menus pour le slider, heritage, couleur sur flashland v5 car il y'a pas dans le wiki
---[[
--- variables hairListM hairListF & celles ci dessous prises de flashland v5
-
-local rideList = { "-", "Rides yeux", "Rides 1", "Rides 2", "Rides 3", "Rides 4", "Rides 5", "Rides 6", "Rides 7", "Rides 8", "Rides 9", "Rides 10", "Rides EX 1", "Rides EX 2", "Cernes" }
-local tachList = { "-", "Peu de tâches", "Tâches peu visibles", "Tâches baladées", "Tâches éparpillées", "Tâches sauvages", "Tâches centrées", "Tâches joues", "Tâches visage", "Infection visage", "Infection joues", "Rougeur", "Rougeur infectée", "Rougeurs front", "Acnée", "Acnée sévère", "Acnée baladée", "Acnée épaisse", "Acnée front", "Acnée totale" }
-local eyesList = { "Vert", "Emmeraude", "Bleu", "Bleu ciel", "Marron clair", "Marron", "Noisette", "Gris sombre", "Gris propre", "Rose", "Jaune", "Violet", "Blackout", "Ombre grise", "Soleil tequila", "Atomic", "Faux", "Cola", "Ranger", "Ying-yang", "Bull", "Lezard", "Dragon", "Extra-terrestre", "Chèvre", "Smiley", "Possédé", "Démon", "Infecté", "Alien", "Mort", "Zombie" }
-local spawnInProgress = false
-
-local BarbeName = {}
-for i = 1, 29, 1 do
-    BarbeName[i] = GetLabelText("CC_BEARD_" .. i - 1)
-end
-
-local SKClist = { "-" }
-for i = 0, 11, 1 do
-    table.insert(SKClist, GetLabelText("CC_SKINCOM_" .. i))
-end
-
-local MoleList = { "-" }
-
-for i = 0, 18, 1 do
-    table.insert(MoleList, GetLabelText("CC_MOLEFRECK_" .. i))
-end
-
-local ComplexList = { "-" }
-for i = 1, 11, 1 do
-    table.insert(ComplexList, GetLabelText("CC_MOLEFRECK_" .. i))
-end
-
-local MaquillageList = { "-" }
-for i = 1, 71, 1 do
-    table.insert(MaquillageList, GetLabelText("CC_MKUP_" .. i))
-end
-
-local LipsList = { "-" }
-for i = 1, 10, 1 do
-    table.insert(LipsList, GetLabelText("CC_LIPSTICK_" .. i))
-end
-
-local colorsPanel = {
-    haircut = {
-        [1] = 1,
-        [2] = 1,
-    },
-    barber = {
-        [1] = 1,
-        [2] = 1,
-    },
-    lipstick = {
-        [1] = 1,
-        [2] = 1,
-    },
-    makeup = {
-        [1] = 1,
-        [2] = 1,
-    }
-}
 
 
-
-local Items = {
-    mp_m_freemode_01 = {
-        [1] = {
-            List = { "Standard", "Protubérant", "Plat", "-" },
-            Index = 1,
-        },
-        [2] = {
-            List = { "Standard", "Ouverts", "Plissés", "-" },
-            Index = 1,
-        },
-        [3] = {
-            List = { "Standard", "Large", "Petit", "-" },
-            Index = 1,
-        },
-        [4] = {
-            List = { "Standard", "Saillante", "Incurvée", "-" },
-            Index = 1,
-        },
-        [5] = {
-            List = { "Standard", "Cassé", "Vers le haut", "-" },
-            Index = 1,
-        },
-        [6] = {
-            List = { "Standard", "Larges", "Fines", "-" },
-            Index = 1,
-        },
-        [7] = {
-            List = { "Standard", "Grosses", "Minces", "-" },
-            Index = 1,
-        },
-        [8] = {
-            List = { "Standard", "Épaisses", "Minces", "-" },
-            Index = 1,
-        },
-        [9] = {
-            List = { "Standard", "Carrée", "Ronde", "-" },
-            Index = 1,
-        },
-        [10] = {
-            List = { "Standard", "Large", "Petit", "-" },
-            Index = 1,
-        },
-        [11] = {
-            List = { "Standard", "Pointu", "Rond", "-" },
-            Index = 1,
-        },
-    },
-
-    mp_f_freemode_01 = {
-        [1] = {
-            List = { "Standard", "Protubérant", "Plat", "-" },
-            Index = 1,
-        },
-        [2] = {
-            List = { "Standard", "Ouverts", "Plissés", "-" },
-            Index = 1,
-        },
-        [3] = {
-            List = { "Standard", "Large", "Petit", "-" },
-            Index = 1,
-        },
-        [4] = {
-            List = { "Standard", "Saillante", "Incurvée", "-" },
-            Index = 1,
-        },
-        [5] = {
-            List = { "Standard", "Cassé", "Vers le haut", "-" },
-            Index = 1,
-        },
-        [6] = {
-            List = { "Standard", "Larges", "Fines", "-" },
-            Index = 1,
-        },
-        [7] = {
-            List = { "Standard", "Grosses", "Minces", "-" },
-            Index = 1,
-        },
-        [8] = {
-            List = { "Standard", "Épaisses", "Minces", "-" },
-            Index = 1,
-        },
-        [9] = {
-            List = { "Standard", "Carrée", "Ronde", "-" },
-            Index = 1,
-        },
-        [10] = {
-            List = { "Standard", "Large", "Petit", "-" },
-            Index = 1,
-        },
-        [11] = {
-            List = { "Standard", "Pointu", "Rond", "-" },
-            Index = 1,
-        },
-    }
-}
-local self = {
-    FACE_F_BROW = false,
-    FACE_F_EYES = false,
-    FACE_F_NOSE = false,
-    FACE_F_NOSEP = false,
-    FACE_F_NOSET = false,
-    FACE_F_CHEEK = false,
-    FACE_F_CHEEKS = false,
-    FACE_F_LIPS = false,
-    FACE_F_JAW = false,
-    FACE_F_CHIN = false,
-    FACE_F_CHINS = false,
-    FACE_HAIR = false,
-    FACE_BEARD = false,
-    FACE_SKINISSUES = false,
-    FACE_OLDNESS = false,
-    FACE_TINT = false,
-}
-
-]]
 
 local HeritageMom = { "Laila", "Jasmine", "Khadija", "Hannan", "Hasna", "Samira", "Ines", "Lina", "Amira", "Luna", "Aya", "Noûr", "Fatima", "Amina", "Aicha", "Myriam", "Leila", "Emira", "Selma", "Jana", "Manël", "Bouchra" }
 local HeritageDad = { "Azize", "Mustapha", "Jibril", "Walid", "Mohammed", "Merwan", "Ali", "Hassan", "Nabil", "Momo", "Karim", "Rayan", "Mehdi", "Yussuf", "Akram", "Ismail", "Ilyess", "Naïm", "Youness", "Youssef", "Ayoub", "Wassim", "Aymen" }
@@ -342,7 +168,6 @@ local colorsPanel = {
         [2] = 1,
     }
 }
-
 Corazon.cIdentity = {}
 
 Corazon.cCharacterCreatorData = {}
@@ -555,56 +380,6 @@ local self = {
     FACE_TINT = false,
 }
 
-function setPlayerPed(skin)
-    local hash = skin
-    RequestModel(hash)
-    while not HasModelLoaded(hash) do
-        Citizen.Wait(500)
-    end
-    SetPlayerModel(PlayerId(), hash)
-    SetPedDefaultComponentVariation(PlayerPedId())
-    SetEntityAsMissionEntity(PlayerPedId(), true, true)
-    SetModelAsNoLongerNeeded(PlayerPedId())
-end
-
-function setPlayerFaceCreator(ped, zboubi, skin)
-    
-    SetPedHeadBlendData(ped, zboubi.faceMum, zboubi.faceDad, 0, zboubi.faceMum, zboubi.faceDad, 0, zboubi.ressemblance, zboubi.skinMix, 0, false)
-    SetPedFaceFeature(ped, 0, zboubi.noseWidth)
-    SetPedFaceFeature(ped, 1, zboubi.nosePeakHeight)
-    SetPedFaceFeature(ped, 2, zboubi.nosePeakLength)
-    SetPedFaceFeature(ped, 3, zboubi.noseBoneHeight)
-    SetPedFaceFeature(ped, 4, zboubi.nosePeaklowering)
-    SetPedFaceFeature(ped, 5, zboubi.noseBoneTwist)
-    SetPedFaceFeature(ped, 6, zboubi.eyebrowHeight)
-    SetPedFaceFeature(ped, 7, zboubi.eyebrowForward)
-    SetPedFaceFeature(ped, 8, zboubi.cheeksBoneHeight)
-    SetPedFaceFeature(ped, 9, zboubi.cheeksBoneWidth)
-    SetPedFaceFeature(ped, 11, zboubi.eyeOpening)
-    SetPedFaceFeature(ped, 12, zboubi.lipsThickness)
-    SetPedFaceFeature(ped, 13, zboubi.jawBoneWidth)
-    SetPedFaceFeature(ped, 14, zboubi.jawBoneBackLength)
-    SetPedFaceFeature(ped, 15, zboubi.chimpBoneLowering)
-    SetPedFaceFeature(ped, 16, zboubi.chimpBoneLength)
-    SetPedFaceFeature(ped, 17, zboubi.chimpBoneWidth)
-    SetPedFaceFeature(ped, 18, zboubi.chimpHole)
-    SetPedComponentVariation(ped, 2, zboubi.hairStyle, 0, 0)
-    SetPedHairColor(ped, zboubi.hairColor[1], zboubi.hairColor[2])
-    SetPedHeadOverlay(ped, 1, zboubi.beardStyle, zboubi.beardOpacity)
-    SetPedHeadOverlayColor(ped, 1, 1, zboubi.beardColor[1], zboubi.beardColor[2])
-    SetPedHeadOverlay(ped, 3, zboubi.ageingStyle, zboubi.ageingOpacity)
-    SetPedHeadOverlay(ped, 8, zboubi.lipstickStyle, zboubi.lipstickOpacity)
-    SetPedHeadOverlayColor(ped, 8, 1, zboubi.lipstickColor[1], zboubi.lipstickColor[2])
-    SetPedHeadOverlay(ped, 4, zboubi.makeupStyle, zboubi.makeupOpacity)
-    SetPedHeadOverlayColor(ped, 4, 1, zboubi.makeupColor[1], zboubi.makeupColor[2])
-    SetPedEyeColor(ped, zboubi.eyeStyle)
-    SetPedHeadOverlay(ped, 0, zboubi.blemishesStyle, zboubi.blemishesOpacity)
-    SetPedHeadOverlay(ped, 6, zboubi.complexionStyle, zboubi.complexionStyle)
-    SetPedHeadOverlay(ped, 7, zboubi.skinAspectStyle, zboubi.skinAspectOpacity)
-    SetPedHeadOverlay(ped, 9, zboubi.frecklesStyle, zboubi.frecklesOpacity)
-
-end
-
 function saveIdentityCharacter()
     local charID = getCharID()
 		
@@ -749,6 +524,8 @@ function saveCharacterPersonnalisation()
     
     Wait(5000)
     RemoveLoadingPrompt()
+    Wait(2500)
+    Corazon.cCharacterCreatorData = nil
 end
 
 local Character = {}
@@ -816,11 +593,12 @@ function setPlayerFaceSpawn(skin)
         Citizen.Wait(0)
     end
 
+    Wait(10000)
+    Corazon.cCharacterCreatorData = nil
+
 end
 
 function openCharCreatorMenu()
-    Corazon.cCharacterCreatorDataPED = "mp_m_freemode_01"
-    setPlayerPed("mp_m_freemode_01")
 
     RMenu.Add('charCreator', 'main', RageUI.CreateMenu("Mon Personnage", ""))
     RMenu.Add('charCreator', 'heritage', RageUI.CreateSubMenu(RMenu:Get('charCreator', 'main'), "Personnage", "~b~Heritage"))
@@ -830,7 +608,7 @@ function openCharCreatorMenu()
 
     RMenu:Get('charCreator', 'main'):SetSubtitle("~b~Creation du Personnage")
     RMenu:Get('charCreator', 'main').Closable = false;
-    --RMenu:Get('charCreator', 'main').EnableMouse = false
+    RMenu:Get('charCreator', 'main').EnableMouse = true
     RMenu:Get('charCreator', 'customFace').EnableMouse = true
     RMenu:Get('charCreator', 'customAdvanced').EnableMouse = true
 
@@ -840,6 +618,7 @@ function openCharCreatorMenu()
     local pedNonChoisi = true
     local mpNonChoisi = true
     local heritageSet = false
+    local charID = getCharID()
 
     RageUI.CreateWhile(1.0, true, function()
         if RageUI.Visible(RMenu:Get('charCreator', 'main')) then
@@ -863,7 +642,7 @@ function openCharCreatorMenu()
                 end
 
                 if mpNonChoisi then
-                    RageUI.Button("Choisir un PED", "Choisissez votre ped, voici un lien ou vous pouvez trouver celui que vous voulez : https://docs.fivem.net/docs/game-references/ped-models/", { }, true, function(Hovered, Active, Selected)  
+                    RageUI.Button("Choisir un PED", "Choisissez votre ped, voici un lien ou vous pouvez trouver celui que vous voulez : https://docs.fivem.net/docs/game-references/ped-models/. ⚠ Attention, les PED ne sont pas personnalisables" , { }, true, function(Hovered, Active, Selected)  
                         if (Selected) then
                             Corazon.cCharacterCreatorDataPED = KeyboardInput("Votre PED : https://docs.fivem.net/docs/game-references/ped-models/", "a_f_m_beach_01", 25)
                             --setPlayerFaceCreator(GetPlayerPed(-1), Corazon.cCharacterCreatorData, skin)
@@ -888,7 +667,6 @@ function openCharCreatorMenu()
                         end, RMenu:Get('charCreator', 'customAdvanced'))
                     end
                 end
-
                 
                 RageUI.Button("Identité", "L'identité de votre personnage", { RightLabel = "→"  }, true, function(Hovered, Active, Selected)
 
@@ -896,22 +674,41 @@ function openCharCreatorMenu()
 
                 RageUI.Button("Sauvegarder & Continuer", "Sauvegarder & Continuer.", { RightBadge = RageUI.BadgeStyle.Tick, Color = { BackgroundColor = { 0, 120, 0, 25 } } }, true, function(Hovered, Active, Selected)  
                     if (Selected) then
-                        if not ped then 
-                            ShowAboveRadarMessage("Veuillez choisir votre sexe") return 
-                        elseif not heritageSet then 
-                            ShowAboveRadarMessage("Veuillez choisir votre heritage") return 
-                        elseif not nameIdentity then 
+                        local nameIdentity = Corazon.cIdentity.Name
+                        local lieuIdentity = Corazon.cIdentity.Lieu
+                        local dateIdentity = Corazon.cIdentity.Date
+
+                        if mpNonChoisi then
+                            if not heritageSet then 
+                                ShowAboveRadarMessage("Veuillez choisir votre heritage") return 
+                            end
+                        --elseif not pedNonChoisi then 
+                        --    if not nameIdentity then                            
+                        --       ShowAboveRadarMessage(translate('error_identity_creator')) return 
+                        --    elseif not lieuIdentity then
+                        --        ShowAboveRadarMessage(translate('error_identity_creator')) return 
+                        --    elseif not dateIdentity then
+                        --        ShowAboveRadarMessage(translate('error_identity_creator')) return 
+                        --    else 
+                        --        TriggerServerEvent("corazon_character:saveUnicPED", Corazon.cCharacterCreatorDataPED, charID)
+                        --        saveIdentityCharacter()
+                        --        LoadingPrompt("Sauvegarde de votre identité en cours", 3)
+                        --        Wait(2500)
+                        --        RageUI.CloseAll()
+                        --        RMenu:Delete('charCreator', 'main')
+                        --    end
+                        elseif not nameIdentity then                            
                             ShowAboveRadarMessage(translate('error_identity_creator')) return 
                         elseif not lieuIdentity then
                             ShowAboveRadarMessage(translate('error_identity_creator')) return 
                         elseif not dateIdentity then
                             ShowAboveRadarMessage(translate('error_identity_creator')) return 
                         else
-                            --TriggerServerEvent("corazon:saveIdentity", charID, nameIdentity, lieuIdentity, dateIdentity)
+                            RageUI.CloseAll()
                             saveIdentityCharacter()
                             LoadingPrompt("Sauvegarde de votre identité en cours", 3)
                             Wait(2500)
-                            RageUI.CloseAll()
+                            saveCharacterPersonnalisation()
                             RMenu:Delete('charCreator', 'main')
                         end
 
@@ -1590,7 +1387,7 @@ function openCharCreatorMenu()
     end, 1)
 end
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-            
+        
 RegisterNetEvent("corazon.character:openCreationMenu")
 AddEventHandler("corazon.character:openCreationMenu", function()
     openCharCreatorMenu()
@@ -1603,102 +1400,6 @@ RegisterCommand("perso", function()
     Wait(25)
 	RageUI.Visible(RMenu:Get('charCreator', 'main'), not RageUI.Visible(RMenu:Get('charcrea', 'main')))
 end)
-
---[[
-local FirstSpawn = true
-
-function callBackSpawnPlayer()
-
-    local charID = getCharID()
-
-    if charID == 1 then
-        Citizen.CreateThread(function()
-            if FirstSpawn then
-                TriggerServerCallback('corazon_character:getPlayerSkinOne', function(skin, ped)
-                
-                    if ped ~= nil and skin ~= nil then
-                        setPlayerPed(ped)
-                        Wait(1000)
-                        setPlayerFaceSpawn(skin)
-                    elseif ped == nil and skin == nil then
-                        RemoveLoadingPrompt()
-                        LoadingPrompt("Un problème est survenu, redirection en cours", 3)
-                        Wait(2500)
-                        RemoveLoadingPrompt()
-                        LoadingPrompt("Veuillez patienter", 3)
-                        TriggerEvent("corazon.character:openCreationMenu")
-                    elseif ped == nil then
-                        RemoveLoadingPrompt()
-                        LoadingPrompt("Un problème est survenu, redirection en cours", 3)
-                        Wait(2500)
-                        RemoveLoadingPrompt()
-                        LoadingPrompt("Veuillez patienter", 3)
-                        TriggerEvent("corazon.character:openCreationMenu")
-                    elseif skin == nil then 
-                        RemoveLoadingPrompt()
-                        LoadingPrompt("Un problème est survenu, redirection en cours", 3)
-                        Wait(2500)
-                        RemoveLoadingPrompt()
-                        LoadingPrompt("Veuillez patienter", 3)
-                        TriggerEvent("corazon.character:openCreationMenu")
-                    end
-                    FirstSpawn = false
-                end)
-            end
-        end)          
-    elseif charID == 2 then
-        Citizen.CreateThread(function()
-            if FirstSpawn then
-                TriggerServerCallback('corazon_character:getPlayerSkinTwo', function(skin, ped)
-                    if ped ~= nil and skin ~= nil then
-                        setPlayerPed(ped)
-                        Wait(1000)
-                        setPlayerFaceSpawn(skin)
-                    elseif ped == nil and skin == nil then
-                        RemoveLoadingPrompt()
-                        LoadingPrompt("Un problème est survenu, redirection en cours", 3)
-                        Wait(2500)
-                        RemoveLoadingPrompt()
-                        LoadingPrompt("Veuillez patienter", 3)
-                        TriggerEvent("corazon.character:openCreationMenu")
-                    elseif ped == nil then
-                        RemoveLoadingPrompt()
-                        LoadingPrompt("Un problème est survenu, redirection en cours", 3)
-                        Wait(2500)
-                        RemoveLoadingPrompt()
-                        LoadingPrompt("Veuillez patienter", 3)
-                        TriggerEvent("corazon.character:openCreationMenu")
-                    elseif skin == nil then 
-                        RemoveLoadingPrompt()
-                        LoadingPrompt("Un problème est survenu, redirection en cours", 3)
-                        Wait(2500)
-                        RemoveLoadingPrompt()
-                        LoadingPrompt("Veuillez patienter", 3)
-                        TriggerEvent("corazon.character:openCreationMenu")
-                    end
-                    FirstSpawn = false
-                end)
-            end
-        end)
-	end
-end
-
-RegisterNetEvent("corazon.character:callbackSpawnPlayer")
-AddEventHandler("corazon.character:callbackSpawnPlayer", function()
-    callBackSpawnPlayer()
-end)
---]]
-
---[[
-RegisterCommand("spawnPerso", function()
-    --print("fzefz")
-    callBackSpawnPlayer()
-end)
-
-RegisterCommand("setCharID", function()
-    setCharID("1")
-end)
---]]
 
 RegisterCommand("setMP", function()
     setPlayerPed("mp_m_freemode_01")

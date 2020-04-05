@@ -4,7 +4,7 @@ AddEventHandler("corazon:zebiTest", function(charID)
 	local charID = charID
 	local license = GetPlayerIdentifiers(source)[1]
 
-	MySQL.Sync.execute("INSERT INTO joueurs_d"..charID.."_perso(license) VALUES (@license)",{['@license']=license})
+	MySQL.Sync.execute("INSERT INTO players_d"..charID.."_char(license) VALUES (@license)",{['@license']=license})
 	
 end)
 

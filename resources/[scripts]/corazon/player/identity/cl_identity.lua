@@ -2,9 +2,9 @@ Corazon.Identity = {}
 Corazon.FakeIdentity = {}
 
 function createMenuIdentity()
-	RMenu.Add('identity', 'main', RageUI.CreateMenu(translate('my_personnage'), translate('my_personnage')))
+	RMenu.Add('identity', 'main', RageUI.CreateMenu(translate('my_charnnage'), translate('my_charnnage')))
 
-	RMenu:Get('identity', 'main'):SetSubtitle(translate('my_personnage'))
+	RMenu:Get('identity', 'main'):SetSubtitle(translate('my_charnnage'))
 	RMenu:Get('identity', 'main').Closed = function()
 		-- TODO Perform action
 	end;

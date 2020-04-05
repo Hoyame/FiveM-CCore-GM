@@ -34,6 +34,6 @@ end
 
 RegisterCommand("openMenu", function()
     openMenuExample()
-    Wait(2500)
+    Wait(25)
     RageUI.Visible(RMenu:Get('showcase', 'main'), not RageUI.Visible(RMenu:Get('showcase', 'main')))
 end)

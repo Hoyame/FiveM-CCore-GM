@@ -2,9 +2,8 @@
   "ExpandedNodes": [
     "",
     "\\corazon",
-    "\\corazon\\core",
-    "\\corazon\\core\\admin"
+    "\\corazon\\core"
   ],
-  "SelectedNode": "\\corazon\\core\\admin\\cl_admin.lua",
+  "SelectedNode": "\\corazon\\core\\sh_functions.lua",
   "PreviewInSolutionExplorer": false
 }

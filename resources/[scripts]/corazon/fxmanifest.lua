@@ -5,16 +5,16 @@ server_script '@mysql-async/lib/MySQL.lua'
 
 
 client_scripts {
-    "src/RMenu.lua",
-    "src/menu/RageUI.lua",
-    "src/menu/Menu.lua",
-    "src/menu/MenuController.lua",
-    "src/components/*.lua",
-    "src/menu/elements/*.lua",
-    "src/menu/items/*.lua",
-    "src/menu/panels/*.lua",
-    "src/menu/panels/*.lua",
-    "src/menu/windows/*.lua",
+    "core/src/RMenu.lua",
+    "core/src/menu/RageUI.lua",
+    "core/src/menu/Menu.lua",
+    "core/src/menu/MenuController.lua",
+    "core/src/components/*.lua",
+    "core/src/menu/elements/*.lua",
+    "core/src/menu/items/*.lua",
+    "core/src/menu/panels/*.lua",
+    "core/src/menu/panels/*.lua",
+    "core/src/menu/windows/*.lua",
 }
 
 client_scripts {
@@ -24,18 +24,24 @@ client_scripts {
 }
 
 client_scripts {
-	'callback/cl_callback.lua',
+	'core/callback/cl_callback.lua',
 	----------------------------------------------
-	'core/sh_menu.lua',
-	'core/cl_skinchanger.lua',
-	'core/sh_functions.lua',
-	'core/cl_players.lua',
+	'core/utils/sh_functions.lua',
+	'core/player/cl_players.lua',
+	'core/utils/cl_utils.lua',
+	'core/player/cl_perso.lua',
+	'core/game/cl_game.lua',
+	'core/utils/cl_cam.lua',
 	----------------------------------------------
-	'game/cl_game.lua',
-	--'game/cl_connection.lua',
-	----------------------------------------------
+	'player/connection/cl_connection.lua',
+	'player/selector/cl_cam.lua',
+	'player/selector/cl_selector.lua',
+	'player/character/cl_character.lua',
 	'player/identity/cl_identity.lua',
-	'player/character/cl_character.lua'
+	----------------------------------------------
+	'menu/cl_charnalmenu.lua',
+	'menu/cl_informations.lua'
+
 }
 
 server_scripts {
@@ -45,13 +51,38 @@ server_scripts {
 }
 
 server_scripts {
-	'callback/sv_callback.lua',
+	'core/callback/sv_callback.lua',
 	----------------------------------------------
 	'core/sv_players.lua',
 	----------------------------------------------
-	'game/sv_game.lua',
-	--'game/sv_connection.lua',
+	'core/game/sv_game.lua',
 	----------------------------------------------
+	'player/connection/sv_connection.lua',
+	'player/selector/sv_selector.lua',
+	'player/character/sv_character.lua',
 	'player/identity/sv_identity.lua',
-	'player/character/sv_character.lua'
+		
 }
+
+--[[
+exports {
+	'ShowHelpNotification',
+	'ShowAdvancedNotification',
+	'ShowAboveRadarMessage',
+	'LoadingPrompt',
+	'DrawAdvancedText2',
+	'createBlip',
+	'KeyboardInput',
+	-----------------------
+	'getPlayerMoneyBanque',
+	'getPlayerMoneySale',
+	'getPlayerMoneyEspece',
+	'getPlayerPermissions',
+	'getPlayerIdentityName',
+	'getPlayerJob',
+	'getPlayerJobGrade',
+	'getPlayerIsBusy',
+	'getPlayerIsConnected'
+
+}
+--]]
