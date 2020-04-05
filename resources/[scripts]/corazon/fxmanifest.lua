@@ -40,6 +40,7 @@ client_scripts {
 	'player/identity/cl_identity.lua',
 	----------------------------------------------
 	'menu/cl_charnalmenu.lua',
+	'menu/cl_settings.lua', --By Ademo
 	'menu/cl_informations.lua'
 
 }
