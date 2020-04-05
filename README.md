@@ -34,5 +34,6 @@ Take the RageUI, take the "src" folder, and drag it into "FiveM-CCore-GM\resourc
   - Character Choice [RageUI]
   - Identity Register [RageUI]
   - Advanced character creator [RageUI]
+  - Settings Menu [RageUI]
   
   # Discord : https://discord.gg/BWcENUB
