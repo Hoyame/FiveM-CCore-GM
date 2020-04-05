@@ -4,3 +4,6 @@
 [submodule "cfx-server-data"]
 	path = cfx-server-data
 	url = https://github.com/citizenfx/cfx-server-data
+[submodule "fivem-mysql-async"]
+	path = fivem-mysql-async
+	url = https://github.com/brouznouf/fivem-mysql-async
