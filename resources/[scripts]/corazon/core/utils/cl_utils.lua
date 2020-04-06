@@ -22,6 +22,8 @@ end
 
 --------------------------------------------------------------------
 
+--- ESX Functions
+
 function getPedMugshot(ped, transparent)
 	if DoesEntityExist(ped) then
 		local mugshot

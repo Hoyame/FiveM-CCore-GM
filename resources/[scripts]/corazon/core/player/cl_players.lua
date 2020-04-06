@@ -17,14 +17,14 @@ cPlayer.player.jobGrade = ""
 cPlayer.player.perm = ""
 cPlayer.player.charID = ""
 
-cPlayer.player.espece = ""
-cPlayer.player.banque = ""
-cPlayer.player.sale = ""
+cPlayer.player.cash = ""
+cPlayer.player.bank = ""
+cPlayer.player.dirty = ""
 
 cPlayer.player.vIDname = ""
 cPlayer.player.vIDlieu = ""
-cPlayer.player.vIDjour = ""
-cPlayer.player.vIDmois = ""
+cPlayer.player.vIDday = ""
+cPlayer.player.vIDmonth = ""
 cPlayer.player.vIDannee = ""
 
 cPlayer.player.vIDarme = false
@@ -36,8 +36,8 @@ cPlayer.player.vIDmoto = false
 
 cPlayer.player.fIDname = ""
 cPlayer.player.fIDlieu = ""
-cPlayer.player.fIDjour = ""
-cPlayer.player.fIDmois = ""
+cPlayer.player.fIDday = ""
+cPlayer.player.fIDmonth = ""
 cPlayer.player.fIDannee = ""
 
 cPlayer.player.fIDjob = ""
@@ -95,34 +95,34 @@ AddEventHandler("corazon_core:dataGrip", function(result)
     cPlayer.player.jobGrade = tostring(result[1].pJobGrade)
     
     cPlayer.player.perm = tostring(result[1].sPerm)
-    cPlayer.player.espece = tonumber(result[1].pEspece)
-    cPlayer.player.banque = tonumber(result[1].pBanque)
-    cPlayer.player.sale = tonumber(result[1].pSale)
+    cPlayer.player.cash = tonumber(result[1].pCash)
+    cPlayer.player.bank = tonumber(result[1].pBank)
+    cPlayer.player.dirty = tonumber(result[1].pDirty)
     
     cPlayer.player.vIDname = tostring(result[1].iNom)
-    cPlayer.player.vIDlieu = tostring(result[1].iLieu)
-    cPlayer.player.vIDjour = tonumber(result[1].iJour)
-    cPlayer.player.vIDmois = tostring(result[1].iMois)
+    cPlayer.player.vIDlieu = tostring(result[1].iLocation)
+    cPlayer.player.vIDday = tonumber(result[1].iJour)
+    cPlayer.player.vIDmonth = tostring(result[1].iMois)
     cPlayer.player.vIDannee = tonumber(result[1].iannee)
 
     cPlayer.player.fIDname = tostring(result[1].fNom) 
-    cPlayer.player.fIDlieu = tostring(result[1].fLieu)
-    cPlayer.player.fIDjour = tonumber(result[1].fJour)
-    cPlayer.player.fIDmois = tostring(result[1].fMois)
+    cPlayer.player.fIDlieu = tostring(result[1].fLocation)
+    cPlayer.player.fIDday = tonumber(result[1].fJour)
+    cPlayer.player.fIDmonth = tostring(result[1].fMois)
     cPlayer.player.fIDannee = tonumber(result[1].fannee)
     cPlayer.player.fIDjob = tostring(result[1].fJob)
 
     local idArme, idCamion, idMoto, idVoiture, fdArme, fdCamion, fdMoto, fdVoiture
 
     idArme = tonumber(result[1].ipArme)
-    idCamion = tonumber(result[1].ipCamion)
-    idMoto = tonumber(result[1].ipVoiture)
-    idVoiture = tonumber(result[1].ipMoto)
+    idCamion = tonumber(result[1].ipTruck)
+    idMoto = tonumber(result[1].ipCar)
+    idVoiture = tonumber(result[1].ipMotorbike)
 
     fdArme = tonumber(result[1].fpArme)
-    fdCamion = tonumber(result[1].fpCamion)
-    fdMoto = tonumber(result[1].fpVoiture)
-    fdVoiture = tonumber(result[1].fpMoto)
+    fdCamion = tonumber(result[1].fpTruck)
+    fdMoto = tonumber(result[1].fpCar)
+    fdVoiture = tonumber(result[1].fpMotorbike)
 
     if idArme == "1" then 
         cPlayer.player.vIDarme = true
@@ -145,15 +145,15 @@ AddEventHandler("corazon_core:dataGrip", function(result)
 end)
 
 function getPlayerMoneyBanque()
-    return cPlayer.player.banque
+    return cPlayer.player.bank
 end
 
 function getPlayerMoneySale()
-    return cPlayer.player.sale
+    return cPlayer.player.dirty
 end
 
 function getPlayerMoneyEspece()
-    return cPlayer.player.espece
+    return cPlayer.player.cash
 end
 
 function getPlayerPermissions()

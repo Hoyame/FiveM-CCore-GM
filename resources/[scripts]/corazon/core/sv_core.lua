@@ -5,13 +5,13 @@ Corazon.PlayerData.job = nil
 Corazon.PlayerData.jobGrade = nil
 Corazon.PlayerData.perm = nil
 --Corazon.PlayerData.charID = nil
-Corazon.PlayerData.espece = nil
-Corazon.PlayerData.banque = nil
-Corazon.PlayerData.sale = nil
+Corazon.PlayerData.cash = nil
+Corazon.PlayerData.bank = nil
+Corazon.PlayerData.dirty = nil
 Corazon.PlayerData.vIDname = nil
 Corazon.PlayerData.vIDlieu = nil
-Corazon.PlayerData.vIDjour = nil
-Corazon.PlayerData.vIDmois = nil
+Corazon.PlayerData.vIDday = nil
+Corazon.PlayerData.vIDmonth = nil
 Corazon.PlayerData.vIDannee = nil
 Corazon.PlayerData.vIDarme = false
 Corazon.PlayerData.vIDcamion = false
@@ -19,8 +19,8 @@ Corazon.PlayerData.vIDvoiture = false
 Corazon.PlayerData.vIDmoto = false
 Corazon.PlayerData.fIDname = nil
 Corazon.PlayerData.fIDlieu = nil
-Corazon.PlayerData.fIDjour = nil
-Corazon.PlayerData.fIDmois = nil
+Corazon.PlayerData.fIDday = nil
+Corazon.PlayerData.fIDmonth = nil
 Corazon.PlayerData.fIDannee = nil
 Corazon.PlayerData.fIDjob = nil
 Corazon.PlayerData.fIDarme = false
@@ -44,13 +44,13 @@ function loadPlayerDataCharacter(charID, source)
                 job = nil,
                 jobGrade = nil, 
                 perm = nil,
-                espece = nil,
-                banque = nil,
-                sale = nil,
+                cash = nil,
+                bank = nil,
+                dirty = nil,
                 vIDname = nil,
                 vIDlieu = nil,
-                vIDjour = nil,
-                vIDmois = nil,
+                vIDday = nil,
+                vIDmonth = nil,
                 vIDannee = nil,
                 vIDjob  = false,
                 vIDarme = false,
@@ -59,8 +59,8 @@ function loadPlayerDataCharacter(charID, source)
                 vIDmoto = false,
                 fIDname = nil,
                 fIDlieu = nil,
-                fIDjour = nil,
-                fIDmois = nil,
+                fIDday = nil,
+                fIDmonth = nil,
                 fIDannee = nil,
                 fIDjob  = false,
                 fIDarme = false,
@@ -80,12 +80,12 @@ function loadPlayerDataCharacter(charID, source)
 
             --- Money 
 
-            if player.espece ~= nil then 
-                tblPlayer.espece = player.espece 
-            elseif player.banque ~= nil then 
-                tblPlayer.banque = player.banque 
-            elseif player.sale ~= nil then 
-                tblPlayer.sale = player.sale 
+            if player.cash ~= nil then 
+                tblPlayer.cash = player.cash 
+            elseif player.bank ~= nil then 
+                tblPlayer.bank = player.bank 
+            elseif player.dirty ~= nil then 
+                tblPlayer.dirty = player.dirty 
             end
 
             --- Identité
@@ -94,10 +94,10 @@ function loadPlayerDataCharacter(charID, source)
                 tblPlayer.vIDname = player.vIDname 
             elseif player.vIDlieu ~= nil then 
                 tblPlayer.vIDlieu = player.vIDlieu 
-            elseif player.vIDjour ~= nil then 
-                tblPlayer.vIDjour = player.vIDjour 
-            elseif player.vIDmois ~= nil then 
-                tblPlayer.vIDmois = player.vIDmois 
+            elseif player.vIDday ~= nil then 
+                tblPlayer.vIDday = player.vIDday 
+            elseif player.vIDmonth ~= nil then 
+                tblPlayer.vIDmonth = player.vIDmonth 
             elseif player.vIDannee ~= nil then 
                 tblPlayer.vIDannee = player.vIDannee 
             elseif player.vIDjob ~= nil then 
@@ -118,10 +118,10 @@ function loadPlayerDataCharacter(charID, source)
                 tblPlayer.fIDname = player.fIDname 
             elseif player.fIDlieu ~= nil then 
                 tblPlayer.fIDlieu = player.fIDlieu        
-            elseif player.fIDjour ~= nil then 
-                tblPlayer.fIDjour = player.fIDjour        
-            elseif player.fIDmois ~= nil then 
-                tblPlayer.fIDmois = player.fIDmois        
+            elseif player.fIDday ~= nil then 
+                tblPlayer.fIDday = player.fIDday        
+            elseif player.fIDmonth ~= nil then 
+                tblPlayer.fIDmonth = player.fIDmonth        
             elseif player.fIDannee ~= nil then 
                 tblPlayer.fIDannee = player.fIDannee 
             elseif player.fIDjob ~= nil then 
@@ -140,13 +140,13 @@ function loadPlayerDataCharacter(charID, source)
             Corazon.PlayerData.job = tblPlayer.job
             Corazon.PlayerData.jobGrade = tblPlayer.jobGrade
             Corazon.PlayerData.perm = tblPlayer.perm
-            Corazon.PlayerData.espece = tblPlayer.espece
-            Corazon.PlayerData.banque = tblPlayer.banque
-            Corazon.PlayerData.sale = tblPlayer.sale
+            Corazon.PlayerData.cash = tblPlayer.cash
+            Corazon.PlayerData.bank = tblPlayer.bank
+            Corazon.PlayerData.dirty = tblPlayer.dirty
             Corazon.PlayerData.vIDname = tblPlayer.vIDname
             Corazon.PlayerData.vIDlieu = tblPlayer.vIDlieu
-            Corazon.PlayerData.vIDjour = tblPlayer.vIDjour
-            Corazon.PlayerData.vIDmois = tblPlayer.vIDmois
+            Corazon.PlayerData.vIDday = tblPlayer.vIDday
+            Corazon.PlayerData.vIDmonth = tblPlayer.vIDmonth
             Corazon.PlayerData.vIDannee = tblPlayer.vIDannee
             Corazon.PlayerData.vIDarme = tblPlayer.vIDarme
             Corazon.PlayerData.vIDcamion = tblPlayer.vIDcamion
@@ -154,8 +154,8 @@ function loadPlayerDataCharacter(charID, source)
             Corazon.PlayerData.vIDmoto = tblPlayer.vIDmoto
             Corazon.PlayerData.fIDname = tblPlayer.fIDname
             Corazon.PlayerData.fIDlieu = tblPlayer.fIDlieu
-            Corazon.PlayerData.fIDjour = tblPlayer.fIDjour
-            Corazon.PlayerData.fIDmois = tblPlayer.fIDmois
+            Corazon.PlayerData.fIDday = tblPlayer.fIDday
+            Corazon.PlayerData.fIDmonth = tblPlayer.fIDmonth
             Corazon.PlayerData.fIDannee = tblPlayer.fIDannee
             Corazon.PlayerData.fIDjob = tblPlayer.fIDjob 
             Corazon.PlayerData.fIDarme = tblPlayer.fIDarme
@@ -174,13 +174,13 @@ function loadPlayerDataCharacter(charID, source)
                 job = nil,
                 jobGrade = nil, 
                 perm = nil,
-                espece = nil,
-                banque = nil,
-                sale = nil,
+                cash = nil,
+                bank = nil,
+                dirty = nil,
                 vIDname = nil,
                 vIDlieu = nil,
-                vIDjour = nil,
-                vIDmois = nil,
+                vIDday = nil,
+                vIDmonth = nil,
                 vIDannee = nil,
                 vIDjob  = false,
                 vIDarme = false,
@@ -189,8 +189,8 @@ function loadPlayerDataCharacter(charID, source)
                 vIDmoto = false,
                 fIDname = nil,
                 fIDlieu = nil,
-                fIDjour = nil,
-                fIDmois = nil,
+                fIDday = nil,
+                fIDmonth = nil,
                 fIDannee = nil,
                 fIDjob  = false,
                 fIDarme = false,
@@ -210,12 +210,12 @@ function loadPlayerDataCharacter(charID, source)
 
             --- Money 
 
-            if player.espece ~= nil then 
-                tblPlayer.espece = player.espece 
-            elseif player.banque ~= nil then 
-                tblPlayer.banque = player.banque 
-            elseif player.sale ~= nil then 
-                tblPlayer.sale = player.sale 
+            if player.cash ~= nil then 
+                tblPlayer.cash = player.cash 
+            elseif player.bank ~= nil then 
+                tblPlayer.bank = player.bank 
+            elseif player.dirty ~= nil then 
+                tblPlayer.dirty = player.dirty 
             end
 
             --- Identité
@@ -224,10 +224,10 @@ function loadPlayerDataCharacter(charID, source)
                 tblPlayer.vIDname = player.vIDname 
             elseif player.vIDlieu ~= nil then 
                 tblPlayer.vIDlieu = player.vIDlieu 
-            elseif player.vIDjour ~= nil then 
-                tblPlayer.vIDjour = player.vIDjour 
-            elseif player.vIDmois ~= nil then 
-                tblPlayer.vIDmois = player.vIDmois 
+            elseif player.vIDday ~= nil then 
+                tblPlayer.vIDday = player.vIDday 
+            elseif player.vIDmonth ~= nil then 
+                tblPlayer.vIDmonth = player.vIDmonth 
             elseif player.vIDannee ~= nil then 
                 tblPlayer.vIDannee = player.vIDannee 
             elseif player.vIDjob ~= nil then 
@@ -248,10 +248,10 @@ function loadPlayerDataCharacter(charID, source)
                 tblPlayer.fIDname = player.fIDname 
             elseif player.fIDlieu ~= nil then 
                 tblPlayer.fIDlieu = player.fIDlieu        
-            elseif player.fIDjour ~= nil then 
-                tblPlayer.fIDjour = player.fIDjour        
-            elseif player.fIDmois ~= nil then 
-                tblPlayer.fIDmois = player.fIDmois        
+            elseif player.fIDday ~= nil then 
+                tblPlayer.fIDday = player.fIDday        
+            elseif player.fIDmonth ~= nil then 
+                tblPlayer.fIDmonth = player.fIDmonth        
             elseif player.fIDannee ~= nil then 
                 tblPlayer.fIDannee = player.fIDannee 
             elseif player.fIDjob ~= nil then 
@@ -270,13 +270,13 @@ function loadPlayerDataCharacter(charID, source)
             Corazon.PlayerData.job = tblPlayer.job
             Corazon.PlayerData.jobGrade = tblPlayer.jobGrade
             Corazon.PlayerData.perm = tblPlayer.perm
-            Corazon.PlayerData.espece = tblPlayer.espece
-            Corazon.PlayerData.banque = tblPlayer.banque
-            Corazon.PlayerData.sale = tblPlayer.sale
+            Corazon.PlayerData.cash = tblPlayer.cash
+            Corazon.PlayerData.bank = tblPlayer.bank
+            Corazon.PlayerData.dirty = tblPlayer.dirty
             Corazon.PlayerData.vIDname = tblPlayer.vIDname
             Corazon.PlayerData.vIDlieu = tblPlayer.vIDlieu
-            Corazon.PlayerData.vIDjour = tblPlayer.vIDjour
-            Corazon.PlayerData.vIDmois = tblPlayer.vIDmois
+            Corazon.PlayerData.vIDday = tblPlayer.vIDday
+            Corazon.PlayerData.vIDmonth = tblPlayer.vIDmonth
             Corazon.PlayerData.vIDannee = tblPlayer.vIDannee
             Corazon.PlayerData.vIDarme = tblPlayer.vIDarme
             Corazon.PlayerData.vIDcamion = tblPlayer.vIDcamion
@@ -284,8 +284,8 @@ function loadPlayerDataCharacter(charID, source)
             Corazon.PlayerData.vIDmoto = tblPlayer.vIDmoto
             Corazon.PlayerData.fIDname = tblPlayer.fIDname
             Corazon.PlayerData.fIDlieu = tblPlayer.fIDlieu
-            Corazon.PlayerData.fIDjour = tblPlayer.fIDjour
-            Corazon.PlayerData.fIDmois = tblPlayer.fIDmois
+            Corazon.PlayerData.fIDday = tblPlayer.fIDday
+            Corazon.PlayerData.fIDmonth = tblPlayer.fIDmonth
             Corazon.PlayerData.fIDannee = tblPlayer.fIDannee
             Corazon.PlayerData.fIDjob = tblPlayer.fIDjob 
             Corazon.PlayerData.fIDarme = tblPlayer.fIDarme
@@ -302,5 +302,5 @@ function getPlayerDataCharacter(charID, source)
 end
 
 AddEventHandler('corazon:getPlayerDataCharacter', function(cb)
-	cb(Corazon.PlayerData)
+	cb(Corazon.PlayerData )
 end)

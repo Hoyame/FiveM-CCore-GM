@@ -205,3 +205,4 @@ AddEventHandler("corazon:spawnPlayerToLastPosition", function(charID)
 		--TriggerClientEvent('corazon.character:callbackSpawnPlayer', source)
 	end
 end)
+
