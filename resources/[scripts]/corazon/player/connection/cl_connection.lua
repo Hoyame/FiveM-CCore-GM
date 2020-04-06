@@ -83,8 +83,8 @@ AddEventHandler('corazon_connexion:dataGripSelectPersoOne', function(result)
 	activeOne = true
 
 	nomOne = tostring(result[1].iNom)
-	especeOne = tonumber(result[1].pEspece)
-	banqueOne = tonumber(result[1].pBanque)
+	especeOne = tonumber(result[1].pCash)
+	banqueOne = tonumber(result[1].pBank)
 	metierOne = tostring(result[1].pJob)
 end)
 
@@ -93,8 +93,8 @@ AddEventHandler('corazon_connexion:dataGripSelectPersoTwo', function(result)
 	activeTwo = true
 
 	nomTwo = tostring(result[1].iNom)
-	especeTwo = tonumber(result[1].pEspece)
-	banqueTwo = tonumber(result[1].pBanque)
+	especeTwo = tonumber(result[1].pCash)
+	banqueTwo = tonumber(result[1].pBank)
 	metierTwo = tostring(result[1].pJob)
 end)
 

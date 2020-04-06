@@ -2,7 +2,7 @@ RegisterNetEvent("corazon_connexion:goDataGripOne")
 AddEventHandler("corazon_connexion:goDataGripOne", function(charID)
 	local source = source	
 	local player = GetPlayerIdentifiers(source)[1]
-    local result = MySQL.Sync.fetchAll("SELECT pEspece, pBanque, pJob, iNom FROM players_d1_char WHERE license = @license", {['@license'] = player})
+    local result = MySQL.Sync.fetchAll("SELECT pCash, pBank, pJob, iNom FROM players_d1_char WHERE license = @license", {['@license'] = player})
     
 	TriggerClientEvent("corazon_connexion:dataGripSelectPersoOne", source, result)
 end)
@@ -11,7 +11,7 @@ RegisterNetEvent("corazon_connexion:goDataGripTwo")
 AddEventHandler("corazon_connexion:goDataGripTwo", function(charID)
 	local source = source	
 	local player = GetPlayerIdentifiers(source)[1]
-    local result = MySQL.Sync.fetchAll("SELECT pEspece, pBanque, pJob, iNom FROM players_d2_char WHERE license = @license", {['@license'] = player})
+    local result = MySQL.Sync.fetchAll("SELECT pCash, pBank, pJob, iNom FROM players_d2_char WHERE license = @license", {['@license'] = player})
     
 	TriggerClientEvent("corazon_connexion:dataGripSelectPersoTwo", source, result)
 end)
