@@ -17,8 +17,7 @@
 I release this game mode that I started, because I quit fivem, and I embark on a new project
 
 # 🐌 How to use it ?
-1. Download RageUI & CFX_Server_Data
-2. Take the RageUI, take the "src" folder, and drag it into "FiveM-CCore-GM\resources\[scripts]\corazon\core", then take "cfx_server_data" and drag the contents of the resources folder from "cfx_server_data" in "FiveM-CCore-GM\resources\"
+Take "cfx_server_data" and drag the contents of the resources folder from "cfx_server_data" in "FiveM-CCore-GM\resources\"
 
 # 🐌 Pre-Required
  - [MySQL Async](https://github.com/brouznouf/fivem-mysql-async)
