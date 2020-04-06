@@ -39,6 +39,6 @@ Take "cfx_server_data" and drag the contents of the resources folder from "cfx_s
   # ⚠️ Warning
 Downloading and publishing this resource on Github without using the github Fork option is not allowed and may result in a suspension of the repository. I invite you to respect my work and that of collaborators. 
 
-It does not work with esx, it replaces it
+It does not work with esx and essentialmode or vrp, it replaces it
 
   # Discord : https://discord.gg/BWcENUB
