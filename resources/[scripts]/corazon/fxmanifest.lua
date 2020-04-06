@@ -20,7 +20,7 @@ client_scripts {
 client_scripts {
 	'sh_locale.lua',
 	'sh_translate.lua',
-	'sh_config.lua'
+	'cfg_config.lua'
 }
 
 client_scripts {
