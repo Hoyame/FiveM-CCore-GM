@@ -8,7 +8,7 @@
 <p align="center">
   <a href="http://hits.dwyl.com/corazon2/FiveM-CCore-GM"><img src="http://hits.dwyl.com/corazon2/FiveM-CCore-GM.svg"      alt="license"></a> 
 </p>
-
+ 
 <p align="center">
 <img width="80%" src="https://cdn.discordapp.com/attachments/685229563915141194/690359158763028510/ccore.png">
 </p>
