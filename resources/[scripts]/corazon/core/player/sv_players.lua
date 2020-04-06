@@ -71,7 +71,7 @@ AddEventHandler("corazon_core:goDataGrip", function(charID)
 
 	local source = source	
 	local license = GetPlayerIdentifiers(source)[1]
-    local result = MySQL.Sync.fetchAll("SELECT license, pEspece, pBanque, pSale, pJob, pJobGrade, sPerm, iNom, iLieu, iJour, iMois, iAnnée, ipArme, ipCamion, ipVoiture, ipMoto, fNom, fLieu, fJour, fMois, fAnnée, fJob, fpArme, fpCamion, fpVoiture, fpMoto FROM players_d"..charID.."_char WHERE license = @license", {['@license'] = license})
+    local result = MySQL.Sync.fetchAll("SELECT license, pCash, pBank, pDirty, pJob, pJobGrade, sPerm, iNom, iLocation, iJour, iMois, iAnnée, ipArme, ipTruck, ipCar, ipMotorbike, fNom, fLocation, fJour, fMois, fAnnée, fJob, fpArme, fpTruck, fpCar, fpMotorbike FROM players_d"..charID.."_char WHERE license = @license", {['@license'] = license})
     
 	TriggerClientEvent("corazon_core:dataGrip", source, result)
 end)
@@ -96,9 +96,9 @@ function setMoney(money, setting, charID, amount)
 			local source = source
 			local license = GetPlayerIdentifiers(source)[1]
 		
-			local result = MySQL.Sync.fetchAll('SELECT pEspece FROM players_d'..charID..'_char WHERE license = @license', {['@license'] = license})
+			local result = MySQL.Sync.fetchAll('SELECT pCash FROM players_d'..charID..'_char WHERE license = @license', {['@license'] = license})
 				
-			MySQL.Async.execute('UPDATE players_d'..charID..'_char SET pEspece = @money WHERE license = @license', {
+			MySQL.Async.execute('UPDATE players_d'..charID..'_char SET pCash = @money WHERE license = @license', {
 				['@license'] = license, 
 				['@money'] = math.abs(result[1].money + amount)
 			})
@@ -107,9 +107,9 @@ function setMoney(money, setting, charID, amount)
 			local source = source
 			local license = GetPlayerIdentifiers(source)[1]
 		
-			local result = MySQL.Sync.fetchAll('SELECT pEspece FROM players_d'..charID..'_char WHERE license = @license', {['@license'] = license})
+			local result = MySQL.Sync.fetchAll('SELECT pCash FROM players_d'..charID..'_char WHERE license = @license', {['@license'] = license})
 				
-			MySQL.Async.execute('UPDATE players_d'..charID..'_char SET pEspece = @money WHERE license = @license', {
+			MySQL.Async.execute('UPDATE players_d'..charID..'_char SET pCash = @money WHERE license = @license', {
 				['@license'] = license, 
 				['@money'] = math.abs(result[1].money - amount)
 			})
@@ -120,9 +120,9 @@ function setMoney(money, setting, charID, amount)
 			local source = source
 			local license = GetPlayerIdentifiers(source)[1]
 		
-			local result = MySQL.Sync.fetchAll('SELECT pBanque FROM players_d'..charID..'_char WHERE license = @license', {['@license'] = license})
+			local result = MySQL.Sync.fetchAll('SELECT pBank FROM players_d'..charID..'_char WHERE license = @license', {['@license'] = license})
 				
-			MySQL.Async.execute('UPDATE players_d'..charID..'_char SET pBanque = @bank WHERE license = @license', {
+			MySQL.Async.execute('UPDATE players_d'..charID..'_char SET pBank = @bank WHERE license = @license', {
 				['@license'] = license, 
 				['@bank'] = math.abs(result[1].bank + amount)
 			})
@@ -131,9 +131,9 @@ function setMoney(money, setting, charID, amount)
 			local source = source
 			local license = GetPlayerIdentifiers(source)[1]
 		
-			local result = MySQL.Sync.fetchAll('SELECT pBanque FROM players_d'..charID..'_char WHERE license = @license', {['@license'] = license})
+			local result = MySQL.Sync.fetchAll('SELECT pBank FROM players_d'..charID..'_char WHERE license = @license', {['@license'] = license})
 				
-			MySQL.Async.execute('UPDATE players_d'..charID..'_char SET pBanque = @bank WHERE license = @license', {
+			MySQL.Async.execute('UPDATE players_d'..charID..'_char SET pBank = @bank WHERE license = @license', {
 				['@license'] = license, 
 				['@bank'] = math.abs(result[1].bank - amount)
 			})
@@ -144,22 +144,22 @@ function setMoney(money, setting, charID, amount)
 			local source = source
 			local license = GetPlayerIdentifiers(source)[1]
 		
-			local result = MySQL.Sync.fetchAll('SELECT pSale FROM players_d'..charID..'_char WHERE license = @license', {['@license'] = license})
+			local result = MySQL.Sync.fetchAll('SELECT pDirty FROM players_d'..charID..'_char WHERE license = @license', {['@license'] = license})
 				
-			MySQL.Async.execute('UPDATE players_d'..charID..'_char SET pSale = @sale WHERE license = @license', {
+			MySQL.Async.execute('UPDATE players_d'..charID..'_char SET pDirty = @dirty WHERE license = @license', {
 				['@license'] = license, 
-				['@sale'] = math.abs(result[1].sale + amount)
+				['@dirty'] = math.abs(result[1].dirty + amount)
 			})
 		elseif setting == remove then
 			local charID = charID
 			local source = source
 			local license = GetPlayerIdentifiers(source)[1]
 		
-			local result = MySQL.Sync.fetchAll('SELECT pSale FROM players_d'..charID..'_char WHERE license = @license', {['@license'] = license})
+			local result = MySQL.Sync.fetchAll('SELECT pDirty FROM players_d'..charID..'_char WHERE license = @license', {['@license'] = license})
 				
-			MySQL.Async.execute('UPDATE players_d'..charID..'_char SET pSale = @sale WHERE license = @license', {
+			MySQL.Async.execute('UPDATE players_d'..charID..'_char SET pDirty = @dirty WHERE license = @license', {
 				['@license'] = license, 
-				['@sale'] = math.abs(result[1].sale - amount)
+				['@dirty'] = math.abs(result[1].dirty - amount)
 			})
 		end
 	end
@@ -205,4 +205,3 @@ AddEventHandler("corazon:spawnPlayerToLastPosition", function(charID)
 		--TriggerClientEvent('corazon.character:callbackSpawnPlayer', source)
 	end
 end)
-
