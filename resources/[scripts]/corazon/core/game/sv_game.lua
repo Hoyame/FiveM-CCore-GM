@@ -1,27 +1,3 @@
-RegisterServerEvent('playerConnecting')
-AddEventHandler('playerConnecting', function(name, setKickReason)
-	local id
-	for k,v in ipairs(GetPlayerIdentifiers(source))do
-		if string.sub(v, 1, string.len("license:")) == "license:" then
-			id = v
-			break
-		end
-	end
-
-	for k,v in ipairs(GetPlayerIdentifiers(source))do
-		if string.sub(v, 1, string.len("steam:")) == "steam:" then
-			setKickReason("⚙ | Veuillez fermer steam (Dans le gestionnaire de tâches)")
-			CancelEvent()
-			break
-		end
-	end
-
-	if not id then
-		setKickReason("⚙ | Aucun identifiant a été détectée, veuillez redémarrer fivem, si ça persiste veuillez redémarrer votre ordinateur")
-		CancelEvent()
-	end
-end)
-
 
 --[[
 RegisterServerEvent('corazon.game:sv:gripData')
