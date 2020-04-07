@@ -48,7 +48,7 @@ client_scripts {
 server_scripts {
 	'sh_locale.lua',
 	'sh_translate.lua',
-	'sh_config.lua'
+	'config/cfg_config.lua'
 }
 
 server_scripts {
