@@ -1,4 +1,4 @@
--- Base du menu prise de la base flashland 
+-- Base du menu & des variables sont prise de la base flashland 
 
 
 local HeritageMom = { "Laila", "Jasmine", "Khadija", "Hannan", "Hasna", "Samira", "Ines", "Lina", "Amira", "Luna", "Aya", "Noûr", "Fatima", "Amina", "Aicha", "Myriam", "Leila", "Emira", "Selma", "Jana", "Manël", "Bouchra" }
