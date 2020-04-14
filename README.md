@@ -38,7 +38,7 @@ Take "cfx_server_data" and drag the contents of the resources folder from "cfx_s
   
   # ⚠️ Warning
 - Downloading and publishing this resource on Github without using the github Fork option is not allowed and may result in a suspension of the repository. I invite you to respect my work and that of collaborators. 
-- Compatible with esx
+- Not ompatible with esx
 - Incompatible with the last version of rageui
 
   # Discord : https://discord.gg/BWcENUB
